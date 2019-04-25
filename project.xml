@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+	<meta title="filter-in-scrollRect" package="io.github.mrchnk.filter-in-scrollRect" version="1.0.0" company="mrchnk" />
+	<app main="Main" path="bin/app" file="Main" />
+
+	<window width="640" height="480" fps="30" />
+
+	<source path="src" />
+
+	<haxelib name="openfl" />
+
+    <assets path="assets/pearl.png" preload="true" />
+
+</project>
