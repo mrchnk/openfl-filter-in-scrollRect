@@ -45,6 +45,7 @@ class Main extends Sprite {
 
         var areas = cut(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
 
+        // three test on different types of DisplayObject's
         addTest(areas.topLeft, bitmapFactory);
         addTest(areas.topRight, shapeFactory);
         addTest(areas.bottomLeft, complexFactory);
@@ -54,6 +55,7 @@ class Main extends Sprite {
         var shape:Sprite = new Sprite();
         var areas = cut(rect);
 
+        // topLeft area just displaying scrollRect position
         addArea(areas.topLeft, factory, filter, function (sprite:Sprite, child:DisplayObject, rect:Rectangle):Void {
             sprite.addChild(shape);
             shape.graphics.clear();
@@ -61,15 +63,18 @@ class Main extends Sprite {
             shape.graphics.drawRect(rect.x, rect.y, rect.width, rect.height);
         });
 
-
+        // topRight area has no filters (working case)
         addArea(areas.topRight, factory, null, function (sprite:Sprite, child:DisplayObject, rect:Rectangle):Void {
             sprite.scrollRect = rect;
         });
 
+        // bottomLeft area has filters on child and scrollRect on container
         addArea(areas.bottomLeft, factory, filter, function (sprite:Sprite, child:DisplayObject, rect:Rectangle):Void {
             sprite.scrollRect = rect;
         });
 
+        // bottomRight area has both filters and scrollRect on child:
+        // so child and scrollRect should be positiioned differently in that case to match other cases
         addArea(areas.bottomRight, factory, filter, function (sprite:Sprite, child:DisplayObject, rect:Rectangle):Void {
             child.x = 0;
             child.y = 0;
